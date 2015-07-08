@@ -1,0 +1,54 @@
+{
+  "name": "dropthingsin",
+  "version": "1.0.0",
+  "description": "Keep adding",
+  "keywords": [
+    "upload",
+    "media",
+    "s3",
+    "CMS",
+    "social",
+    "articles",
+    "content"
+  ],
+  "scripts": {
+    "test": "mocha ./source/spec --require ./source/spec/helpers/chai.js --reporter spec",
+    "start": "npm run config; node ./server.js;",
+    "config": "node config/runConfig.js"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0",
+    "sinon": "^1.12.2"
+  },
+  "dependencies": {
+    "atob": "^1.1.2",
+    "aws-sdk": "^2.1.8",
+    "bluebird": "^2.9.6",
+    "express": "^4.11.2",
+    "express-session": "^1.10.2",
+    "glob": "^4.3.5",
+    "hbs": "^2.8.0",
+    "hiredis": "^0.1.17",
+    "inquirer": "^0.8.5",
+    "jsonwebtoken": "^5.0.1",
+    "lodash": "^3.10.0",
+    "moment": "^2.9.0",
+    "multer": "^0.1.7",
+    "node-uuid": "^1.4.2",
+    "passport": "^0.2.2",
+    "passport-github": "^0.1.5",
+    "redis": "^0.12.1"
+  },
+  "main": "start.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sandro-pasquali/dropthingsin.git"
+  },
+  "author": "Sandro Pasquali <spasquali@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sandro-pasquali/dropthingsin/issues"
+  },
+  "homepage": "https://github.com/sandro-pasquali/dropthingsin"
+}

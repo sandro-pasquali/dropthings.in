@@ -1,0 +1,16 @@
+# Logs
+#
+logs
+*.log
+
+# Runtime data
+#
+pids
+*.pid
+*.seed
+
+node_modules
+
+# The generated config settings
+#
+config/.config.json

@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+
+<head>
+
+    {{> header }}
+    
+    <style type="text/css">
+    	body {
+    		padding-top: 60px;
+    	}
+    </style>
+	<style type="text/css">
+		
+	.gridster * {
+	  margin:0;
+	  padding:0;
+	}
+	
+	ul {
+	  list-style-type: none;
+	}
+	
+	/*/
+	/* demo
+	/*/
+	
+	
+	body {
+		font-size: 16px;
+		font-family: 'Helvetica Neue', Arial, sans-serif;
+		color: #444;
+		margin: 30px 40px;
+	}
+	
+	.controls {
+		margin-bottom: 20px;
+	}
+	
+	/*/
+	/* gridster
+	/*/
+	
+	.gridster ul {
+		background-color: #EFEFEF;
+	}
+	
+	.gridster li {
+		font-size: 1em;
+		font-weight: bold;
+		text-align: center;
+		line-height: 100%;
+	}
+	
+	.gridster {
+		margin: 0 auto;
+	
+		opacity: .8;
+	
+		-webkit-transition: opacity .6s;
+		-moz-transition: opacity .6s;
+		-o-transition: opacity .6s;
+		-ms-transition: opacity .6s;
+		transition: opacity .6s;
+	}
+	
+	.gridster .gs-w {
+		background: #DDD;
+		cursor: pointer;
+	}
+	
+	.gridster .player {
+		background: #BBB;
+	}
+	
+	
+	.gridster .preview-holder {
+		border: none!important;
+		background: red!important;
+	}
+	
+	.gs-resize-handle {
+		z-index: 100000;
+	}
+	
+	</style>
+</head>
+
+<body>
+
+	{{> navbar }}
+
+    <!-- Begin page content -->
+	<div class="container">
+
+		<p>
+			<button id="adder">Add a panel</button>
+		</p>
+		<div class="gridster">
+			<ul>
+				<li id="initial-item" class="new-panel" data-row="1" data-col="1" data-sizex="2" data-sizey="2"></li>
+			</ul>
+		</div>
+
+		<script type="text/javascript">
+		
+		var gridster;
+		
+		$(function() {
+		
+			$("#adder").on("click", function(ev) {
+		
+				var id = "_" + Math.floor(Math.random() * 1e6);
+				gridster.add_widget('<div id="' + id + '" class="new-panel"></div>', 3, 2, 4, 4 )
+			});
+		
+			gridster = $(".gridster ul").gridster({
+				widget_base_dimensions: [100, 55],
+				widget_margins: [5, 5],
+				resize: {
+					enabled: true,
+					start: function(e, ui, $widget) {
+	
+					},
+		
+					resize: function(e, ui, $widget) {
+						//  log.innerHTML = 'RESIZE offset: ' + ui.pointer.diff_top +' '+ ui.pointer.diff_left + "<br >" + log.innerHTML;
+					},
+		
+					stop: function(e, ui, $widget) {
+	
+					}
+				}
+			}).data('gridster');
+		
+			$('.gridster').on('dblclick', function(ev) {
+				var $this = $(ev.target);
+				alert('hi');
+				//addMap($this.closest('.new-panel').attr('id'))
+			});
+		});
+		
+		</script>
+	<script src="js/DropThingsIn.js"></script>
+	<script>
+	
+		new DropThingsIn({
+			selector : '.new-panel',
+			preview : function(src) {
+				this.style.backgroundImage = "url(" + src + ")";
+			},
+			dragover : function() { 
+				this.className = 'hover'; 
+				return false; 
+			},
+			dragleave : function() { 
+				this.className = ''; 
+				return false; 
+			},
+			dragend : function() { 
+				this.className = ''; 
+				return false; 
+			},
+			drop : function() {
+				this.className = '';
+			},
+			progress : function(percentage) {				
+				console.log('progress: ', percentage);
+			},
+			received : function() {
+				console.log("RECEIVED...", this);
+			},
+			complete : function(timing) {
+				console.log("COMPLETED...", this, timing);
+			},
+			error : function(status, error) {
+				console.log("Error", this, status, error);
+			}
+		});
+	
+	</script>
+	</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+	{{> header }}
+    <style type="text/css">
+		#target { 
+			background-image: none;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-attachment: fixed;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			border: 4px dashed #000; 
+			width: 100%; 
+			min-height: 300px;
+			height: 100%
+			margin: 20px auto;
+		}
+		.hover {
+			background-color: pink;
+		}
+	</style>
+</head>
+
+<body>
+
+	Build: {{ buildInfo }}
+
+	{{> navbar }}
+
+    <!-- Begin page content -->
+    <div class="container">
+      <div class="page-header">
+        <h1>Header</h1>
+      </div>
+      <p>
+      		<div id="target"></div>
+      </p>
+    </div>
+	
+	<script src="js/DropThingsIn.js"></script>
+	<script>
+	
+		new DropThingsIn({
+			selector : '#target',
+			preview : function(src) {
+				this.style.backgroundImage = "url(" + src + ")";
+			},
+			dragover : function() { 
+				this.className = 'hover'; 
+				return false; 
+			},
+			dragleave : function() { 
+				this.className = ''; 
+				return false; 
+			},
+			dragend : function() { 
+				this.className = ''; 
+				return false; 
+			},
+			drop : function() {
+				this.className = '';
+			},
+			progress : function(percentage) {				
+				console.log('progress: ', percentage);
+			},
+			received : function() {
+				console.log("RECEIVED...", this);
+			},
+			complete : function(timing) {
+				console.log("COMPLETED...", this, timing);
+			},
+			error : function(status, error) {
+				console.log("Error", this, status, error);
+			}
+		});
+	
+	</script>
+</body>
+</html>
